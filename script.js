@@ -37,3 +37,27 @@ const yellowflower = document.createElement("img");
 yellowflower.src = "./images/yellow.png";
 flowerArr.push(yellowflower)
 
+
+// Making sounds
+const soundArr = [];
+
+const cartoonpop = new Audio("./sounds/cartoonpop.mp4");
+soundArr.push(cartoonpop)
+
+const crow = new Audio("./sounds/crow.mp4");
+soundArr.push(crow)
+
+const hover = new Audio("./sounds/hover.mp4");
+soundArr.push(hover)
+
+const pop = new Audio("./sounds/pop.mp4");
+soundArr.push(pop)
+
+const retrolaser = new Audio("./sounds/retrolaser.mp4");
+soundArr.push(retrolaser)
+
+const scifiui = new Audio("./sounds/scifiui.mp4");
+soundArr.push(scifiui)
+
+const synthglide = new Audio("./sounds/synthglide.mp4");
+soundArr.push(synthglide)
