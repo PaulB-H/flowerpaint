@@ -8,3 +8,7 @@ body,
 html {
   overflow: hidden;
 }
+
+#canvas {
+  background-image: url("./images/grass.png");
+}
