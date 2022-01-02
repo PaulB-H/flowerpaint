@@ -61,3 +61,11 @@ soundArr.push(scifiui)
 
 const synthglide = new Audio("./sounds/synthglide.mp4");
 soundArr.push(synthglide)
+
+
+const getRandLoc = () => {
+  const x = Math.floor(Math.random() * canvas.width);
+  const y = Math.floor(Math.random() * canvas.height);
+  return [x, y];
+}
+
