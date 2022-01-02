@@ -79,3 +79,18 @@ const stopAllSounds = () => {
 const playRandomSound = () => {
   soundArr[Math.floor(Math.random() * soundArr.length)].play()
 }
+
+const placeRandFlower = () => {
+  const randFlower = flowerArr[Math.floor(Math.random() * flowerArr.length)];
+
+  const randXY = getRandLoc();
+
+  const imageSize = 150;
+
+  ctx.drawImage(randFlower, randXY[0] - (imageSize / 2), randXY[1] - (imageSize / 2), imageSize, imageSize);
+
+  stopAllSounds();
+  playRandomSound();
+}
+
+canvas.addEventListener("click", placeRandFlower)
