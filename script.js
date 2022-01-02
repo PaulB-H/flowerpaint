@@ -69,3 +69,13 @@ const getRandLoc = () => {
   return [x, y];
 }
 
+const stopAllSounds = () => {
+  soundArr.forEach((item) => {
+    item.pause()
+    item.currentTime = 0;
+  })
+}
+
+const playRandomSound = () => {
+  soundArr[Math.floor(Math.random() * soundArr.length)].play()
+}
