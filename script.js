@@ -94,3 +94,8 @@ const placeRandFlower = () => {
 }
 
 canvas.addEventListener("click", placeRandFlower)
+
+
+const muteAudio = () => soundArr.forEach((sound) => sound.muted = true);
+
+const unMuteAudio = () => soundArr.forEach((sound) => sound.muted = false);
