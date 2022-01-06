@@ -99,3 +99,16 @@ canvas.addEventListener("click", placeRandFlower)
 const muteAudio = () => soundArr.forEach((sound) => sound.muted = true);
 
 const unMuteAudio = () => soundArr.forEach((sound) => sound.muted = false);
+
+const toggleMute = () => {
+  const muteBtn = document.getElementById("toggle-mute");
+
+  if (muteBtn.innerText === "Mute") {
+    muteAudio();
+    muteBtn.innerText = "Unmute"
+  } else {
+    unMuteAudio();
+    muteBtn.innerText = "Mute"
+  }
+
+}

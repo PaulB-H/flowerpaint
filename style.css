@@ -12,3 +12,13 @@ html {
 #canvas {
   background-image: url("./images/grass.png");
 }
+
+#toggle-mute {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 20px;
+  padding: 20px;
+  font-size: 20px;
+  border-radius: 20px;
+}
