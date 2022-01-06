@@ -2,6 +2,12 @@
 
 <h4>Draw with flowers on a Canvas</h4>
 
+<p>A canvas app designed for my daughter to use on a tablet. Once I connected the sounds and images, I was reminded of KidPix, and this is becoming my homage to it.</p>
+
+<p>As she is still too young to "paint" with the tablet, I wanted the first version to place flowers randomly, even when she repeatedly hits the same spot.</p>
+
+<p>The next version will let you: select flower color and size size, and "draw" with your finger or mouse. I would also like to be able  to export PNG's of the drawings, or even be able to save them somewhere... (full stack project idea?)</p>
+
 <p>Images from: <a href="https://openclipart.org/" target="_blank">openclipart.org</a></p>
 
 <p>Sounds from: <a href="https://freesound.org/" target="_blank">freesound.org</a></p>
