@@ -10,9 +10,17 @@
   <body>
     <canvas id="canvas"></canvas>
 
-    <button id="toggle-mute" onclick="toggleMute()"><p>Mute</p></button>
+    <button id="toggle-mute" class="toggle-btn" onclick="toggleMute()">
+      <p>Mute</p>
+    </button>
 
-    <button id="toggle-random" onclick="toggleRandom()"><p>Draw</p></button>
+    <button id="toggle-random" class="toggle-btn" onclick="toggleRandom()">
+      <p>Draw</p>
+    </button>
+
+    <button id="clear" class="toggle-btn" onclick="clearCanvas()">
+      <p>Clear</p>
+    </button>
 
     <script src="./script.js"></script>
   </body>

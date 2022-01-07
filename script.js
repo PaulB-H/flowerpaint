@@ -140,3 +140,8 @@ const toggleRandom = () => {
     toggleRandBtn.innerText = "Draw"
   }
 }
+
+
+const clearCanvas = () => {
+  ctx.clearRect(0, 0, canvas.width, canvas.height)
+}
