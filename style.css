@@ -22,3 +22,13 @@ html {
   font-size: 20px;
   border-radius: 20px;
 }
+
+#toggle-random {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 20px;
+  padding: 20px;
+  font-size: 20px;
+  border-radius: 20px;
+}
