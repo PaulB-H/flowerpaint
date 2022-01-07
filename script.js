@@ -112,3 +112,31 @@ const toggleMute = () => {
   }
 
 }
+
+const placeFlower = (e) => {
+  const randFlower = flowerArr[Math.floor(Math.random() * flowerArr.length)];
+
+  const imageSize = 150;
+
+  ctx.drawImage(randFlower, e.clientX - (imageSize / 2), e.clientY - (imageSize / 2), imageSize, imageSize);
+
+  stopAllSounds();
+  playRandomSound();
+}
+
+
+const toggleRandom = () => {
+  const toggleRandBtn = document.getElementById("toggle-random");
+
+  if (toggleRandBtn.innerText === "Draw") {
+    canvas.removeEventListener("click", placeRandFlower)
+    canvas.addEventListener("click", placeFlower)
+
+    toggleRandBtn.innerText = "Random"
+  } else {
+    canvas.removeEventListener("click", placeFlower)
+    canvas.addEventListener("click", placeRandFlower)
+
+    toggleRandBtn.innerText = "Draw"
+  }
+}
