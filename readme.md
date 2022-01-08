@@ -1,12 +1,22 @@
 <h1>Flower Paint</h1>
 
-<h4>Draw with flowers on a Canvas</h4>
+<a href="https://paulbh.com/flowerpaint" target="_blank">paulbh.com/flowerpaint</a>
 
+<h2>Description</h2>
+<p>Draw with flowers on a Canvas</p>
+
+<h2>Details</h2>
 <p>A canvas app designed for my daughter to use on a tablet. Once I connected the sounds and images, I was reminded of KidPix, and this is becoming my homage to it.</p>
-
 <p>As she is still too young to "paint" with the tablet, I wanted the first version to place flowers randomly, even when she repeatedly hits the same spot.</p>
 
-<p>The next version will let you: select flower color and size size, and "draw" with your finger or mouse. I would also like to be able  to export PNG's of the drawings, or even be able to save them somewhere... (full stack project idea?)</p>
+<p>Currently you can toggle between random & draw modes, mute/unmute random sounds, clear the canvas, and download the image.</p>
+
+<ul>
+<lh><u>Todo:</u></lh>
+<li>Allow selection of flower color instead of random flower</li>
+<li>Allow selection of flower size (Small, Medium, Large)</li>
+<li>Add modal to confirm clear canvas</li>
+</ul>
 
 <p>Images from: <a href="https://openclipart.org/" target="_blank">openclipart.org</a></p>
 
