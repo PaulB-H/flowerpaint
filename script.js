@@ -75,17 +75,6 @@ const getRandLoc = () => {
   return [x, y];
 }
 
-const stopAllSounds = () => {
-  soundArr.forEach((item) => {
-    item.pause()
-    item.currentTime = 0;
-  })
-}
-
-const playRandomSound = () => {
-  soundArr[Math.floor(Math.random() * soundArr.length)].play()
-}
-
 const placeRandFlower = () => {
   const randFlower = flowerArr[Math.floor(Math.random() * flowerArr.length)];
 
@@ -99,8 +88,45 @@ const placeRandFlower = () => {
   playRandomSound();
 }
 
+const placeFlower = (e) => {
+  const randFlower = flowerArr[Math.floor(Math.random() * flowerArr.length)];
+
+  const imageSize = 150;
+
+  ctx.drawImage(randFlower, e.clientX - (imageSize / 2), e.clientY - (imageSize / 2), imageSize, imageSize);
+
+  stopAllSounds();
+  playRandomSound();
+}
+
+const toggleRandom = () => {
+  const toggleRandBtn = document.getElementById("toggle-random");
+
+  if (toggleRandBtn.innerText === "Draw") {
+    canvas.removeEventListener("click", placeRandFlower)
+    canvas.addEventListener("click", placeFlower)
+
+    toggleRandBtn.innerText = "Random"
+  } else {
+    canvas.removeEventListener("click", placeFlower)
+    canvas.addEventListener("click", placeRandFlower)
+
+    toggleRandBtn.innerText = "Draw"
+  }
+}
+
 canvas.addEventListener("click", placeRandFlower)
 
+const stopAllSounds = () => {
+  soundArr.forEach((item) => {
+    item.pause()
+    item.currentTime = 0;
+  })
+}
+
+const playRandomSound = () => {
+  soundArr[Math.floor(Math.random() * soundArr.length)].play()
+}
 
 const muteAudio = () => soundArr.forEach((sound) => sound.muted = true);
 
@@ -117,34 +143,6 @@ const toggleMute = () => {
     muteBtn.innerText = "Mute"
   }
 
-}
-
-const placeFlower = (e) => {
-  const randFlower = flowerArr[Math.floor(Math.random() * flowerArr.length)];
-
-  const imageSize = 150;
-
-  ctx.drawImage(randFlower, e.clientX - (imageSize / 2), e.clientY - (imageSize / 2), imageSize, imageSize);
-
-  stopAllSounds();
-  playRandomSound();
-}
-
-
-const toggleRandom = () => {
-  const toggleRandBtn = document.getElementById("toggle-random");
-
-  if (toggleRandBtn.innerText === "Draw") {
-    canvas.removeEventListener("click", placeRandFlower)
-    canvas.addEventListener("click", placeFlower)
-
-    toggleRandBtn.innerText = "Random"
-  } else {
-    canvas.removeEventListener("click", placeFlower)
-    canvas.addEventListener("click", placeRandFlower)
-
-    toggleRandBtn.innerText = "Draw"
-  }
 }
 
 const clearCanvas = () => {
