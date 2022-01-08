@@ -1,5 +1,7 @@
 <h1>Flower Paint</h1>
 
+<img src="https://raw.githubusercontent.com/PaulB-H/flowerpaint/main/images/readme.PNG" alt="" >
+
 <a href="https://paulbh.com/flowerpaint" target="_blank">paulbh.com/flowerpaint</a>
 
 <h2>Description</h2>
