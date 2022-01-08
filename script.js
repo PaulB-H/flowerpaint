@@ -115,7 +115,7 @@ const toggleRandom = () => {
   }
 }
 
-canvas.addEventListener("click", placeRandFlower)
+canvas.addEventListener("click", placeFlower)
 
 const stopAllSounds = () => {
   soundArr.forEach((item) => {
