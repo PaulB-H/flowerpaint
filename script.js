@@ -6,6 +6,12 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+const grass = document.createElement("img");
+grass.src = "./images/grass.png";
+grass.onload = () => {
+  ctx.drawImage(grass, 0, 0)
+}
+
 // Making flowers
 const flowerArr = [];
 

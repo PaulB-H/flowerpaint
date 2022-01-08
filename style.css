@@ -9,10 +9,6 @@ html {
   overflow: hidden;
 }
 
-#canvas {
-  background-image: url("./images/grass.png");
-}
-
 .toggle-btn {
   position: absolute;
   margin: 20px;
