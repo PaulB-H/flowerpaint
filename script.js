@@ -147,7 +147,14 @@ const toggleRandom = () => {
   }
 }
 
-
 const clearCanvas = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height)
 }
+
+document.getElementById("download-link").addEventListener("click", () => {
+  const downloadLink = document.getElementById("download-link");
+
+  const dataURL = canvas.toDataURL();
+
+  downloadLink.href = dataURL;
+})
