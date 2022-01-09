@@ -9,7 +9,7 @@ canvas.height = window.innerHeight;
 const grass = document.createElement("img");
 grass.src = "./images/grass.png";
 grass.onload = () => {
-  ctx.drawImage(grass, 0, 0)
+  ctx.drawImage(grass, 0, 0, canvas.width, canvas.height)
 }
 
 // Making flowers
