@@ -147,6 +147,8 @@ const toggleMute = () => {
 
 const clearCanvas = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+  ctx.drawImage(grass, 0, 0, canvas.width, canvas.height)
 }
 
 document.getElementById("download-link").addEventListener("click", () => {
