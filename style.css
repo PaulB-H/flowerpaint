@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: sans-serif;
 }
 
 body,
@@ -31,4 +32,30 @@ html {
 #download {
   bottom: 0;
   right: 0;
+}
+
+#overlay {
+  display: none;
+  z-index: 10;
+
+  background-color: rgba(0, 0, 0, 0.5);
+
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+
+  top: 0;
+
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+#overlay button,
+#overlay p {
+  margin: 20px;
+  padding: 20px;
+  font-size: 30px;
+  border-radius: 20px;
 }

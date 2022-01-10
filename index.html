@@ -18,13 +18,21 @@
       <p>Random</p>
     </button>
 
-    <button id="clear" class="toggle-btn" onclick="clearCanvas()">
+    <button id="clear" class="toggle-btn" onclick="openOverlay()">
       <p>Clear</p>
     </button>
 
     <a id="download-link" href="" download="myimage.png">
       <button id="download" class="toggle-btn">Download</button>
     </a>
+
+    <div id="overlay" onclick="closeOverlay()">
+      <p style="background-color: white">Clear drawing?</p>
+      <div>
+        <button id="clear2" onclick="clearCanvas()"><p>Yes</p></button>
+        <button id="cancel2" onclick="closeOverlay()"><p>No</p></button>
+      </div>
+    </div>
 
     <script src="./script.js"></script>
   </body>

@@ -158,3 +158,18 @@ document.getElementById("download-link").addEventListener("click", () => {
 
   downloadLink.href = dataURL;
 })
+
+
+const openOverlay = () => {
+  const overlay = document.getElementById("overlay");
+  overlay.style.display = "flex";
+}
+
+const closeOverlay = () => {
+  const overlay = document.getElementById("overlay");
+  overlay.style.display = "none";
+}
+
+const confirmClear = () => {
+  openOverlay();
+}
