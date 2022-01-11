@@ -88,8 +88,39 @@ const placeRandFlower = () => {
   playRandomSound();
 }
 
+let activeColor = "";
+
 const placeFlower = (e) => {
-  const randFlower = flowerArr[Math.floor(Math.random() * flowerArr.length)];
+
+  let randFlower;
+
+  if (!activeColor) {
+    randFlower = flowerArr[Math.floor(Math.random() * flowerArr.length)];
+  } else {
+    switch (activeColor) {
+      case "blue":
+        randFlower = blueflower;
+        break;
+      case "green":
+        randFlower = greenflower;
+        break;
+      case "orange":
+        randFlower = orangeflower;
+        break;
+      case "pink":
+        randFlower = pinkflower;
+        break;
+      case "purple":
+        randFlower = purpleflower;
+        break;
+      case "red":
+        randFlower = redflower;
+        break;
+      case "yellow":
+        randFlower = yellowflower;
+        break;
+    }
+  }
 
   const imageSize = 150;
 
@@ -168,5 +199,34 @@ const closeClearOverlay = () => {
 }
 
 
+const openColorOverlay = () => {
+  document.getElementById("color-overlay").style.display = "flex";
 }
 
+const closeColorOverlay = () => {
+  document.getElementById("color-overlay").style.display = "none";
+}
+
+document.querySelectorAll(".color-btn").forEach((item) => {
+  item.addEventListener("click", () => {
+    const toggleRandom = document.getElementById("toggle-color")
+    toggleRandom.style.backgroundColor = item.id;
+
+    activeColor = item.id;
+
+    switch (item.id) {
+      case "blue":
+      case "green":
+      case "purple":
+        toggleRandom.firstElementChild.style.color = "white"
+        break;
+      case "orange":
+      case "pink":
+      case "red":
+      case "yellow":
+        toggleRandom.firstElementChild.style.color = "black"
+        break;
+    }
+
+  })
+})
