@@ -89,6 +89,7 @@ flowerArr.push(yellowflower)
 // }
 
 let activeColor = "rainbow";
+let flowerSize = 75;
 
 const placeFlower = (e) => {
 
@@ -122,8 +123,6 @@ const placeFlower = (e) => {
     }
   }
 
-  const imageSize = 150;
-
   // This is a hacky solution to make sure I get the right coords
   // since when I started using this function with a touch event
   // the event object structure is different
@@ -139,7 +138,7 @@ const placeFlower = (e) => {
     Yloc = e.clientY;
   };
 
-  ctx.drawImage(randFlower, Xloc - (imageSize / 2), Yloc - (imageSize / 2), imageSize, imageSize);
+  ctx.drawImage(randFlower, Xloc - (flowerSize / 2), Yloc - (flowerSize / 2), flowerSize, flowerSize);
 
   // stopAllSounds();
   // playRandomSound();
@@ -221,6 +220,13 @@ const closeColorOverlay = () => {
   document.getElementById("color-overlay").style.display = "none";
 }
 
+const openSizeOverlay = () => {
+  document.getElementById("size-overlay").style.display = "flex";
+}
+const closeSizeOverlay = () => {
+  document.getElementById("size-overlay").style.display = "none";
+}
+
 document.querySelectorAll(".color-btn").forEach((item) => {
   item.addEventListener("click", () => {
     const toggleColor = document.getElementById("toggle-color")
@@ -267,7 +273,7 @@ canvas.addEventListener("mouseup", (e) => {
 
 canvas.addEventListener("mousemove", (e) => {
   if (drawing) {
-    if (Math.abs(e.clientX - lastLoc[0]) > 75 || Math.abs(e.clientY - lastLoc[1]) > 75) {
+    if (Math.abs(e.clientX - lastLoc[0]) > (flowerSize / 2) || Math.abs(e.clientY - lastLoc[1]) > (flowerSize / 2)) {
       placeFlower(e);
       lastLoc = [e.clientX, e.clientY]
     };
@@ -294,10 +300,27 @@ canvas.addEventListener("touchmove", (e) => {
   console.log(e.touches[0].clientX - lastLoc[0]);
   console.log(e.touches[0].clientY - lastLoc[1]);
   if (drawing) {
-    if (Math.abs(e.touches[0].clientX - lastLoc[0]) > 75 || Math.abs(e.touches[0].clientY - lastLoc[1]) > 75) {
+    if (Math.abs(e.touches[0].clientX - lastLoc[0]) > (flowerSize / 2) || Math.abs(e.touches[0].clientY - lastLoc[1]) > (flowerSize / 2)) {
       placeFlower(e);
-      console.log("Placed flower");
       lastLoc = [e.touches[0].clientX, e.touches[0].clientY]
     };
   }
 })
+
+
+const setFlowerSize = (sizeString) => {
+  switch (sizeString) {
+    case "small":
+      flowerSize = 50;
+      break;
+    case "medium":
+      flowerSize = 75;
+      break;
+    case "large":
+      flowerSize = 100;
+      break;
+    case "xlarge":
+      flowerSize = 150;
+      break;
+  }
+}
