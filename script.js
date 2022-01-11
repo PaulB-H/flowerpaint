@@ -198,7 +198,6 @@ const closeClearOverlay = () => {
   document.getElementById("clear-overlay").style.display = "none";
 }
 
-
 const openColorOverlay = () => {
   document.getElementById("color-overlay").style.display = "flex";
 }
@@ -235,6 +234,29 @@ document.querySelectorAll(".color-btn").forEach((item) => {
         toggleColor.firstElementChild.style.color = "black"
         break;
     }
-
   })
+})
+
+let drawing = false;
+let lastLoc = [0, 0];
+
+canvas.addEventListener("mousedown", (e) => {
+  drawing = true;
+  lastLoc = [e.clientX, e.clientY]
+  placeFlower(e);
+})
+
+canvas.addEventListener("mouseup", (e) => {
+  drawing = false;
+  lastLoc = [e.clientX, e.clientY]
+})
+
+canvas.addEventListener("mousemove", (e) => {
+  if (drawing) {
+    if (Math.abs(e.clientX - lastLoc[0]) > 75 || Math.abs(e.clientY - lastLoc[1]) > 75) {
+      // console.log("yo");
+      placeFlower(e);
+      lastLoc = [e.clientX, e.clientY]
+    };
+  }
 })
