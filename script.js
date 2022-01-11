@@ -209,15 +209,14 @@ const closeColorOverlay = () => {
 
 document.querySelectorAll(".color-btn").forEach((item) => {
   item.addEventListener("click", () => {
-    const toggleRandom = document.getElementById("toggle-color")
-    toggleRandom.style.backgroundColor = item.id;
+    const toggleColor = document.getElementById("toggle-color")
+    toggleColor.style.backgroundColor = item.id;
 
     if (item.id === "rainbow") {
-      // toggleRandom.style.backgroundColor = "rgb(255,0,0)";
-      toggleRandom.style.background = "radial-gradient(circle, rgba(255,0,0,1) 0%, rgba(252,173,0,1) 15%, rgba(251,255,0,1) 35%, rgba(0,255,26,1) 50%, rgba(0,32,255,1) 66%, rgba(105,17,255,1) 82%, rgba(231,87,255,1) 100%)";
+      toggleColor.style.background = "radial-gradient(circle, rgba(255,0,0,1) 0%, rgba(252,173,0,1) 15%, rgba(251,255,0,1) 35%, rgba(0,255,26,1) 50%, rgba(0,32,255,1) 66%, rgba(105,17,255,1) 82%, rgba(231,87,255,1) 100%)";
     } else {
-      toggleRandom.style.background = "";
-      toggleRandom.style.backgroundColor = item.id;
+      toggleColor.style.background = "";
+      toggleColor.style.backgroundColor = item.id;
     }
 
     activeColor = item.id;
@@ -226,14 +225,14 @@ document.querySelectorAll(".color-btn").forEach((item) => {
       case "blue":
       case "green":
       case "purple":
-        toggleRandom.firstElementChild.style.color = "white"
+        toggleColor.firstElementChild.style.color = "white"
         break;
       case "orange":
       case "pink":
       case "red":
       case "yellow":
       case "rainbow":
-        toggleRandom.firstElementChild.style.color = "black"
+        toggleColor.firstElementChild.style.color = "black"
         break;
     }
 
