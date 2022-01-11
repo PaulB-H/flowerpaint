@@ -16,12 +16,13 @@ html {
   padding: 20px;
   font-size: 20px;
   border-radius: 20px;
+  font-weight: bold;
 }
 #toggle-mute {
   top: 0;
   left: 0;
 }
-#toggle-random {
+#toggle-color {
   top: 0;
   right: 0;
 }
@@ -34,7 +35,8 @@ html {
   right: 0;
 }
 
-#clear-overlay {
+#clear-overlay,
+#color-overlay {
   display: none;
   z-index: 10;
 
@@ -58,4 +60,19 @@ html {
   padding: 20px;
   font-size: 30px;
   border-radius: 20px;
+}
+
+#color-overlay {
+  display: none;
+  flex-direction: column;
+  justify-content: start;
+  align-items: end;
+  padding-top: 100px;
+  padding-right: 50px;
+}
+.color-btn {
+  border-radius: 100px;
+  width: 75px;
+  height: 75px;
+  margin: 10px 0;
 }

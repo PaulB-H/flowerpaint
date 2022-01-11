@@ -14,8 +14,8 @@
       <p>Mute</p>
     </button>
 
-    <button id="toggle-random" class="toggle-btn" onclick="toggleRandom()">
-      <p>Random</p>
+    <button id="toggle-color" class="toggle-btn" onclick="openColorOverlay()">
+      <p>Colors</p>
     </button>
 
     <button id="clear" class="toggle-btn" onclick="openClearOverlay()">
@@ -31,6 +31,46 @@
       <div>
         <button id="clear2" onclick="clearCanvas()"><p>Yes</p></button>
         <button id="cancel2" onclick="closeOverlay()"><p>No</p></button>
+      </div>
+    </div>
+
+    <div id="color-overlay" onclick="closeColorOverlay()">
+      <div style="display: flex; flex-direction: column">
+        <button
+          id="blue"
+          class="color-btn"
+          style="background-color: blue"
+        ></button>
+        <button
+          id="green"
+          class="color-btn"
+          style="background-color: green"
+        ></button>
+        <button
+          id="orange"
+          class="color-btn"
+          style="background-color: orange"
+        ></button>
+        <button
+          id="pink"
+          class="color-btn"
+          style="background-color: pink"
+        ></button>
+        <button
+          id="purple"
+          class="color-btn"
+          style="background-color: purple"
+        ></button>
+        <button
+          id="red"
+          class="color-btn"
+          style="background-color: red"
+        ></button>
+        <button
+          id="yellow"
+          class="color-btn"
+          style="background-color: yellow"
+        ></button>
       </div>
     </div>
 
