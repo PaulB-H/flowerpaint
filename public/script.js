@@ -124,7 +124,22 @@ const placeFlower = (e) => {
 
   const imageSize = 150;
 
-  ctx.drawImage(randFlower, e.clientX - (imageSize / 2), e.clientY - (imageSize / 2), imageSize, imageSize);
+  // This is a hacky solution to make sure I get the right coords
+  // since when I started using this function with a touch event
+  // the event object structure is different
+
+  let Xloc;
+  let Yloc;
+
+  if (e.clientX === undefined) {
+    Xloc = e.touches[0].clientX;
+    Yloc = e.touches[0].clientY;
+  } else {
+    Xloc = e.clientX;
+    Yloc = e.clientY;
+  };
+
+  ctx.drawImage(randFlower, Xloc - (imageSize / 2), Yloc - (imageSize / 2), imageSize, imageSize);
 
   stopAllSounds();
   // playRandomSound();
@@ -248,15 +263,41 @@ canvas.addEventListener("mousedown", (e) => {
 
 canvas.addEventListener("mouseup", (e) => {
   drawing = false;
-  lastLoc = [e.clientX, e.clientY]
 })
 
 canvas.addEventListener("mousemove", (e) => {
   if (drawing) {
     if (Math.abs(e.clientX - lastLoc[0]) > 75 || Math.abs(e.clientY - lastLoc[1]) > 75) {
-      // console.log("yo");
       placeFlower(e);
       lastLoc = [e.clientX, e.clientY]
+    };
+  }
+})
+
+canvas.addEventListener("touchstart", (e) => {
+  e.preventDefault();
+  console.log("touchstart");
+  drawing = true;
+  lastLoc = [e.touches[0].clientX, e.touches[0].clientY]
+  placeFlower(e);
+
+  console.log(lastLoc);
+})
+
+canvas.addEventListener("touchend", (e) => {
+  drawing = false;
+  console.log("touchend");
+})
+
+canvas.addEventListener("touchmove", (e) => {
+  console.log("touchmove");
+  console.log(e.touches[0].clientX - lastLoc[0]);
+  console.log(e.touches[0].clientY - lastLoc[1]);
+  if (drawing) {
+    if (Math.abs(e.touches[0].clientX - lastLoc[0]) > 75 || Math.abs(e.touches[0].clientY - lastLoc[1]) > 75) {
+      placeFlower(e);
+      console.log("Placed flower");
+      lastLoc = [e.touches[0].clientX, e.touches[0].clientY]
     };
   }
 })
