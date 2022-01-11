@@ -127,7 +127,7 @@ const placeFlower = (e) => {
   ctx.drawImage(randFlower, e.clientX - (imageSize / 2), e.clientY - (imageSize / 2), imageSize, imageSize);
 
   stopAllSounds();
-  playRandomSound();
+  // playRandomSound();
 }
 
 const toggleRandom = () => {
