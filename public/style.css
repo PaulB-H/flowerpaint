@@ -18,7 +18,8 @@ html {
   border-radius: 20px;
   font-weight: bold;
 }
-#toggle-mute {
+#toggle-mute,
+#toggle-size {
   top: 0;
   left: 0;
 }
@@ -36,7 +37,8 @@ html {
 }
 
 #clear-overlay,
-#color-overlay {
+#color-overlay,
+#size-overlay {
   display: none;
   z-index: 10;
 
@@ -81,6 +83,15 @@ html {
   border-radius: 100px;
   width: 75px;
   height: 75px;
+  margin: 10px;
+}
+
+#size-overlay {
+}
+.size-btn {
+  padding: 30px;
+  font-weight: bold;
+  font-size: 30px;
   margin: 10px;
 }
 
