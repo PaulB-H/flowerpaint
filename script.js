@@ -88,13 +88,13 @@ const placeRandFlower = () => {
   playRandomSound();
 }
 
-let activeColor = "";
+let activeColor = "rainbow";
 
 const placeFlower = (e) => {
 
   let randFlower;
 
-  if (!activeColor) {
+  if (activeColor === "rainbow") {
     randFlower = flowerArr[Math.floor(Math.random() * flowerArr.length)];
   } else {
     switch (activeColor) {
@@ -212,6 +212,14 @@ document.querySelectorAll(".color-btn").forEach((item) => {
     const toggleRandom = document.getElementById("toggle-color")
     toggleRandom.style.backgroundColor = item.id;
 
+    if (item.id === "rainbow") {
+      // toggleRandom.style.backgroundColor = "rgb(255,0,0)";
+      toggleRandom.style.background = "radial-gradient(circle, rgba(255,0,0,1) 0%, rgba(252,173,0,1) 15%, rgba(251,255,0,1) 35%, rgba(0,255,26,1) 50%, rgba(0,32,255,1) 66%, rgba(105,17,255,1) 82%, rgba(231,87,255,1) 100%)";
+    } else {
+      toggleRandom.style.background = "";
+      toggleRandom.style.backgroundColor = item.id;
+    }
+
     activeColor = item.id;
 
     switch (item.id) {
@@ -224,6 +232,7 @@ document.querySelectorAll(".color-btn").forEach((item) => {
       case "pink":
       case "red":
       case "yellow":
+      case "rainbow":
         toggleRandom.firstElementChild.style.color = "black"
         break;
     }
