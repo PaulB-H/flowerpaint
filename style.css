@@ -34,7 +34,7 @@ html {
   right: 0;
 }
 
-#overlay {
+#clear-overlay {
   display: none;
   z-index: 10;
 
@@ -52,8 +52,8 @@ html {
   align-items: center;
   flex-direction: column;
 }
-#overlay button,
-#overlay p {
+#clear-overlay button,
+#clear-overlay p {
   margin: 20px;
   padding: 20px;
   font-size: 30px;
