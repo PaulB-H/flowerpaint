@@ -11,13 +11,17 @@
 <p>A canvas app designed for my daughter to use on a tablet. Once I connected the sounds and images, I was reminded of KidPix, and this is becoming my homage to it.</p>
 <p>As she is still too young to "paint" with the tablet, I wanted the first version to place flowers randomly, even when she repeatedly hits the same spot.</p>
 
-<p>Currently you can toggle between random & draw modes, mute/unmute random sounds, clear the canvas, and download the image.</p>
+<p>Currently you can mute/unmute random sounds, select a flower color, clear the canvas, and download the image.</p>
+
+<sup>\* Random placement mode has been disabled for now. I will create a separate mode that is clear of other buttons little hands could accidentally touch, where the canvas is automatically cleared when it is too full</sup>
 
 <ul>
-<lh><u>Todo:</u></lh>
-<li>Allow selection of flower color instead of random flower</li>
-<li>Allow selection of flower size (Small, Medium, Large)</li>
-<li>Add modal to confirm clear canvas</li>
+  <lh><u>Todo:</u></lh>
+  <strike><li>Allow selection of flower color instead of random flower</li></strike>
+  <li>Allow selection of flower size (Small, Medium, Large)</li>
+  <strike><li>Add modal to confirm clear canvas</li></strike>
+  <li>Create separate mode / page for more kid friendly version</li>
+  <ul><li>No buttons, random flowers only, canvas clears after 100-150 flowers</li></ul>
 </ul>
 
 <p>Images from: <a href="https://openclipart.org/" target="_blank">openclipart.org</a></p>
