@@ -69,10 +69,23 @@ html {
   align-items: end;
   padding-top: 100px;
   padding-right: 50px;
+  overflow: hidden;
+}
+#color-overlay div {
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 .color-btn {
   border-radius: 100px;
   width: 75px;
   height: 75px;
-  margin: 10px 0;
+  margin: 10px;
+}
+
+@media only screen and (max-height: 860px) {
+  #color-overlay div {
+    margin-right: 50px;
+  }
 }
