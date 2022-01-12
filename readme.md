@@ -1,6 +1,6 @@
 <h1>Flower Paint</h1>
 
-<img src="https://raw.githubusercontent.com/PaulB-H/flowerpaint/main/images/readme.PNG" alt="" >
+<img src="https://raw.githubusercontent.com/PaulB-H/flowerpaint/main/public/images/readme2.PNG" alt="" >
 
 <a href="https://paulbh.com/flowerpaint" target="_blank">paulbh.com/flowerpaint</a>
 
@@ -18,7 +18,7 @@
 <ul>
   <lh><u>Todo:</u></lh>
   <strike><li>Allow selection of flower color instead of random flower</li></strike>
-  <li>Allow selection of flower size (Small, Medium, Large)</li>
+  <strike><li>Allow selection of flower size (Small, Medium, Large)</li></strike>
   <strike><li>Add modal to confirm clear canvas</li></strike>
   <li>Create separate mode / page for more kid friendly version</li>
   <ul><li>No buttons, random flowers only, canvas clears after 100-150 flowers</li></ul>
