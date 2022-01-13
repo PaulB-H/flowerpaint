@@ -160,8 +160,6 @@ const placeFlower = (e) => {
 //   }
 // }
 
-canvas.addEventListener("click", placeFlower)
-
 // const stopAllSounds = () => {
 //   soundArr.forEach((item) => {
 //     item.pause()
@@ -280,25 +278,20 @@ canvas.addEventListener("mousemove", (e) => {
   }
 })
 
+canvas.addEventListener("mouseleave", () => drawing = false)
+
 canvas.addEventListener("touchstart", (e) => {
   e.preventDefault();
-  console.log("touchstart");
   drawing = true;
   lastLoc = [e.touches[0].clientX, e.touches[0].clientY]
   placeFlower(e);
-
-  console.log(lastLoc);
 })
 
 canvas.addEventListener("touchend", (e) => {
   drawing = false;
-  console.log("touchend");
 })
 
 canvas.addEventListener("touchmove", (e) => {
-  console.log("touchmove");
-  console.log(e.touches[0].clientX - lastLoc[0]);
-  console.log(e.touches[0].clientY - lastLoc[1]);
   if (drawing) {
     if (Math.abs(e.touches[0].clientX - lastLoc[0]) > (flowerSize / 2) || Math.abs(e.touches[0].clientY - lastLoc[1]) > (flowerSize / 2)) {
       placeFlower(e);
