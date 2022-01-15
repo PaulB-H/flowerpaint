@@ -43,53 +43,27 @@ const yellowflower = document.createElement("img");
 yellowflower.src = "./images/yellow.png";
 flowerArr.push(yellowflower)
 
-
-// Making sounds
-// const soundArr = [];
-
-// const cartoonpop = new Audio("./sounds/cartoonpop.mp4");
-// soundArr.push(cartoonpop)
-
-// const crow = new Audio("./sounds/crow.mp4");
-// soundArr.push(crow)
-
-// const hover = new Audio("./sounds/hover.mp4");
-// soundArr.push(hover)
-
-// const pop = new Audio("./sounds/pop.mp4");
-// soundArr.push(pop)
-
-// const retrolaser = new Audio("./sounds/retrolaser.mp4");
-// soundArr.push(retrolaser)
-
-// const scifiui = new Audio("./sounds/scifiui.mp4");
-// soundArr.push(scifiui)
-
-// const synthglide = new Audio("./sounds/synthglide.mp4");
-// soundArr.push(synthglide)
-
-
-// const getRandLoc = () => {
-//   const x = Math.floor(Math.random() * canvas.width);
-//   const y = Math.floor(Math.random() * canvas.height);
-//   return [x, y];
-// }
-
-// const placeRandFlower = () => {
-//   const randFlower = flowerArr[Math.floor(Math.random() * flowerArr.length)];
-
-//   const randXY = getRandLoc();
-
-//   const imageSize = 150;
-
-//   ctx.drawImage(randFlower, randXY[0] - (imageSize / 2), randXY[1] - (imageSize / 2), imageSize, imageSize);
-
-//   stopAllSounds();
-//   playRandomSound();
-// }
+console.log(flowerArr["blueflower"]);
 
 let activeColor = "rainbow";
 let flowerSize = 75;
+
+const setFlowerSize = (sizeString) => {
+  switch (sizeString) {
+    case "small":
+      flowerSize = 50;
+      break;
+    case "medium":
+      flowerSize = 75;
+      break;
+    case "large":
+      flowerSize = 100;
+      break;
+    case "xlarge":
+      flowerSize = 150;
+      break;
+  }
+}
 
 const placeFlower = (e) => {
 
@@ -108,7 +82,6 @@ const placeFlower = (e) => {
   }
 
   let newFlower;
-
   if (activeColor === "rainbow") {
     newFlower = flowerArr[Math.floor(Math.random() * flowerArr.length)];
   } else {
@@ -139,7 +112,6 @@ const placeFlower = (e) => {
 
   let Xloc;
   let Yloc;
-
   if (eventType === "mouse") {
     Xloc = e.clientX;
     Yloc = e.clientY;
@@ -149,54 +121,7 @@ const placeFlower = (e) => {
   };
 
   ctx.drawImage(newFlower, Xloc - (flowerSize / 2), Yloc - (flowerSize / 2), flowerSize, flowerSize);
-
-  // stopAllSounds();
-  // playRandomSound();
 }
-
-// const toggleRandom = () => {
-//   const toggleRandBtn = document.getElementById("toggle-random");
-
-//   if (toggleRandBtn.innerText === "Draw") {
-//     canvas.removeEventListener("click", placeRandFlower)
-//     canvas.addEventListener("click", placeFlower)
-
-//     toggleRandBtn.innerText = "Random"
-//   } else {
-//     canvas.removeEventListener("click", placeFlower)
-//     canvas.addEventListener("click", placeRandFlower)
-
-//     toggleRandBtn.innerText = "Draw"
-//   }
-// }
-
-// const stopAllSounds = () => {
-//   soundArr.forEach((item) => {
-//     item.pause()
-//     item.currentTime = 0;
-//   })
-// }
-
-// const playRandomSound = () => {
-//   soundArr[Math.floor(Math.random() * soundArr.length)].play()
-// }
-
-// const muteAudio = () => soundArr.forEach((sound) => sound.muted = true);
-
-// const unMuteAudio = () => soundArr.forEach((sound) => sound.muted = false);
-
-// const toggleMute = () => {
-//   const muteBtn = document.getElementById("toggle-mute");
-
-//   if (muteBtn.innerText === "Mute") {
-//     muteAudio();
-//     muteBtn.innerText = "Unmute"
-//   } else {
-//     unMuteAudio();
-//     muteBtn.innerText = "Mute"
-//   }
-
-// }
 
 const clearCanvas = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -212,28 +137,14 @@ document.getElementById("download-link").addEventListener("click", () => {
   downloadLink.href = dataURL;
 })
 
-const openClearOverlay = () => {
-  document.getElementById("clear-overlay").style.display = "flex";
-}
+const openClearOverlay = () => document.getElementById("clear-overlay").style.display = "flex";
+const closeClearOverlay = () => document.getElementById("clear-overlay").style.display = "none";
 
-const closeClearOverlay = () => {
-  document.getElementById("clear-overlay").style.display = "none";
-}
+const openColorOverlay = () => document.getElementById("color-overlay").style.display = "flex";
+const closeColorOverlay = () => document.getElementById("color-overlay").style.display = "none";
 
-const openColorOverlay = () => {
-  document.getElementById("color-overlay").style.display = "flex";
-}
-
-const closeColorOverlay = () => {
-  document.getElementById("color-overlay").style.display = "none";
-}
-
-const openSizeOverlay = () => {
-  document.getElementById("size-overlay").style.display = "flex";
-}
-const closeSizeOverlay = () => {
-  document.getElementById("size-overlay").style.display = "none";
-}
+const openSizeOverlay = () => document.getElementById("size-overlay").style.display = "flex";
+const closeSizeOverlay = () => document.getElementById("size-overlay").style.display = "none";
 
 document.querySelectorAll(".color-btn").forEach((item) => {
   item.addEventListener("click", () => {
@@ -275,9 +186,7 @@ canvas.addEventListener("mousedown", (e) => {
   placeFlower(e);
 })
 
-canvas.addEventListener("mouseup", (e) => {
-  drawing = false;
-})
+canvas.addEventListener("mouseup", () => drawing = false);
 
 canvas.addEventListener("mousemove", (e) => {
   if (drawing) {
@@ -288,7 +197,7 @@ canvas.addEventListener("mousemove", (e) => {
   }
 })
 
-canvas.addEventListener("mouseleave", () => drawing = false)
+canvas.addEventListener("mouseleave", () => drawing = false);
 
 canvas.addEventListener("touchstart", (e) => {
   e.preventDefault();
@@ -297,9 +206,7 @@ canvas.addEventListener("touchstart", (e) => {
   placeFlower(e);
 })
 
-canvas.addEventListener("touchend", (e) => {
-  drawing = false;
-})
+canvas.addEventListener("touchend", () => drawing = false);
 
 canvas.addEventListener("touchmove", (e) => {
   if (drawing) {
@@ -309,21 +216,3 @@ canvas.addEventListener("touchmove", (e) => {
     };
   }
 })
-
-
-const setFlowerSize = (sizeString) => {
-  switch (sizeString) {
-    case "small":
-      flowerSize = 50;
-      break;
-    case "medium":
-      flowerSize = 75;
-      break;
-    case "large":
-      flowerSize = 100;
-      break;
-    case "xlarge":
-      flowerSize = 150;
-      break;
-  }
-}
