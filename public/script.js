@@ -131,6 +131,10 @@ const clearCanvas = () => {
 
 document.getElementById("download-link").addEventListener("click", () => {
   const downloadLink = document.getElementById("download-link");
+  const downloadBtn = document.getElementById("download-btn");
+
+  downloadBtn.setAttribute("disabled", true)
+  setTimeout(() => { downloadBtn.removeAttribute("disabled") }, 1500)
 
   const dataURL = canvas.toDataURL();
 
