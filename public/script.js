@@ -93,32 +93,32 @@ let flowerSize = 75;
 
 const placeFlower = (e) => {
 
-  let randFlower;
+  let newFlower;
 
   if (activeColor === "rainbow") {
-    randFlower = flowerArr[Math.floor(Math.random() * flowerArr.length)];
+    newFlower = flowerArr[Math.floor(Math.random() * flowerArr.length)];
   } else {
     switch (activeColor) {
       case "blue":
-        randFlower = blueflower;
+        newFlower = blueflower;
         break;
       case "green":
-        randFlower = greenflower;
+        newFlower = greenflower;
         break;
       case "orange":
-        randFlower = orangeflower;
+        newFlower = orangeflower;
         break;
       case "pink":
-        randFlower = pinkflower;
+        newFlower = pinkflower;
         break;
       case "purple":
-        randFlower = purpleflower;
+        newFlower = purpleflower;
         break;
       case "red":
-        randFlower = redflower;
+        newFlower = redflower;
         break;
       case "yellow":
-        randFlower = yellowflower;
+        newFlower = yellowflower;
         break;
     }
   }
@@ -138,7 +138,7 @@ const placeFlower = (e) => {
     Yloc = e.clientY;
   };
 
-  ctx.drawImage(randFlower, Xloc - (flowerSize / 2), Yloc - (flowerSize / 2), flowerSize, flowerSize);
+  ctx.drawImage(newFlower, Xloc - (flowerSize / 2), Yloc - (flowerSize / 2), flowerSize, flowerSize);
 
   // stopAllSounds();
   // playRandomSound();
