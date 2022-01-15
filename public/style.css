@@ -10,7 +10,7 @@ html {
   overflow: hidden;
 }
 
-.toggle-btn {
+.corner-btn {
   position: absolute;
   margin: 20px;
   padding: 20px;
@@ -18,20 +18,19 @@ html {
   border-radius: 20px;
   font-weight: bold;
 }
-#toggle-mute,
-#toggle-size {
+#size-btn {
   top: 0;
   left: 0;
 }
-#toggle-color {
+#color-btn {
   top: 0;
   right: 0;
 }
-#clear {
+#clear-btn {
   bottom: 0;
   left: 0;
 }
-#download {
+#download-btn {
   bottom: 0;
   right: 0;
 }
@@ -56,6 +55,7 @@ html {
   align-items: center;
   flex-direction: column;
 }
+
 #clear-overlay button,
 #clear-overlay p {
   margin: 20px;
@@ -63,9 +63,11 @@ html {
   font-size: 30px;
   border-radius: 20px;
 }
+#clear-overlay div {
+  text-align: center;
+}
 
 #color-overlay {
-  display: none;
   flex-direction: column;
   justify-content: start;
   align-items: flex-end;
@@ -93,6 +95,7 @@ html {
   font-weight: bold;
   font-size: 30px;
   margin: 10px;
+  width: 187px;
 }
 
 @media only screen and (max-height: 860px) {

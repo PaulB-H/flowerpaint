@@ -148,14 +148,14 @@ const closeSizeOverlay = () => document.getElementById("size-overlay").style.dis
 
 document.querySelectorAll(".color-btn").forEach((item) => {
   item.addEventListener("click", () => {
-    const toggleColor = document.getElementById("toggle-color")
-    toggleColor.style.backgroundColor = item.id;
+    const colorBtn = document.getElementById("color-btn")
+    colorBtn.style.backgroundColor = item.id;
 
     if (item.id === "rainbow") {
-      toggleColor.style.background = "radial-gradient(circle, rgba(255,0,0,1) 0%, rgba(252,173,0,1) 15%, rgba(251,255,0,1) 35%, rgba(0,255,26,1) 50%, rgba(0,32,255,1) 66%, rgba(105,17,255,1) 82%, rgba(231,87,255,1) 100%)";
+      colorBtn.style.background = "radial-gradient(circle, rgba(255,0,0,1) 0%, rgba(252,173,0,1) 15%, rgba(251,255,0,1) 35%, rgba(0,255,26,1) 50%, rgba(0,32,255,1) 66%, rgba(105,17,255,1) 82%, rgba(231,87,255,1) 100%)";
     } else {
-      toggleColor.style.background = "";
-      toggleColor.style.backgroundColor = item.id;
+      colorBtn.style.background = "";
+      colorBtn.style.backgroundColor = item.id;
     }
 
     activeColor = item.id;
@@ -164,14 +164,14 @@ document.querySelectorAll(".color-btn").forEach((item) => {
       case "blue":
       case "green":
       case "purple":
-        toggleColor.firstElementChild.style.color = "white"
+        colorBtn.firstElementChild.style.color = "white"
         break;
       case "orange":
       case "pink":
       case "red":
       case "yellow":
       case "rainbow":
-        toggleColor.firstElementChild.style.color = "black"
+        colorBtn.firstElementChild.style.color = "black"
         break;
     }
   })

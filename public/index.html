@@ -13,30 +13,34 @@
   <body>
     <canvas id="canvas"></canvas>
 
-    <!-- <button id="toggle-mute" class="toggle-btn" onclick="toggleMute()" disabled>
-      <p>Mute</p>
-    </button> -->
-    <button id="toggle-size" class="toggle-btn" onclick="openSizeOverlay()">
+    <button id="size-btn" class="corner-btn" onclick="openSizeOverlay()">
       <p>Size</p>
     </button>
 
-    <button id="toggle-color" class="toggle-btn" onclick="openColorOverlay()">
+    <button id="color-btn" class="corner-btn" onclick="openColorOverlay()">
       <p>Colors</p>
     </button>
 
-    <button id="clear" class="toggle-btn" onclick="openClearOverlay()">
+    <button id="clear-btn" class="corner-btn" onclick="openClearOverlay()">
       <p>Clear</p>
     </button>
 
     <a id="download-link" href="" download="myimage.png">
-      <button id="download" class="toggle-btn">Download</button>
+      <button id="download-btn" class="corner-btn">Download</button>
     </a>
 
     <div id="clear-overlay" onclick="closeClearOverlay()">
-      <p style="background-color: white">Clear drawing?</p>
+      <p style="background-color: #e9e9ed">Clear drawing?</p>
       <div>
-        <button id="clear2" onclick="clearCanvas()"><p>Yes</p></button>
-        <button id="cancel2" onclick="closeOverlay()"><p>No</p></button>
+        <button onclick="clearCanvas()" style="background-color: lightcoral">
+          <p>Yes</p>
+        </button>
+        <button
+          onclick="closeClearOverlay()"
+          style="background-color: lightgreen"
+        >
+          <p>No</p>
+        </button>
       </div>
     </div>
 
