@@ -93,6 +93,20 @@ let flowerSize = 75;
 
 const placeFlower = (e) => {
 
+  let eventType;
+  switch (e.type) {
+    case "mousedown":
+    case "mousemove":
+    case "mouseup":
+      eventType = "mouse"
+      break
+    case "touchstart":
+    case "touchmove":
+    case "touchend":
+      eventType = "touch"
+      break
+  }
+
   let newFlower;
 
   if (activeColor === "rainbow") {
@@ -123,19 +137,15 @@ const placeFlower = (e) => {
     }
   }
 
-  // This is a hacky solution to make sure I get the right coords
-  // since when I started using this function with a touch event
-  // the event object structure is different
-
   let Xloc;
   let Yloc;
 
-  if (e.clientX === undefined) {
-    Xloc = e.touches[0].clientX;
-    Yloc = e.touches[0].clientY;
-  } else {
+  if (eventType === "mouse") {
     Xloc = e.clientX;
     Yloc = e.clientY;
+  } else if (eventType === "touch") {
+    Xloc = e.touches[0].clientX;
+    Yloc = e.touches[0].clientY;
   };
 
   ctx.drawImage(newFlower, Xloc - (flowerSize / 2), Yloc - (flowerSize / 2), flowerSize, flowerSize);
