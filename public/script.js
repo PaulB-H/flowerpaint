@@ -197,7 +197,7 @@ canvas.addEventListener("mousemove", (e) => {
   }
 })
 
-canvas.addEventListener("mouseleave", () => drawing = false);
+// canvas.addEventListener("mouseleave", () => drawing = false);
 
 canvas.addEventListener("touchstart", (e) => {
   e.preventDefault();
