@@ -5,9 +5,8 @@
   font-family: sans-serif;
 }
 
-body,
-html {
-  overflow: hidden;
+#canvas {
+  display: block;
 }
 
 .corner-btn {
