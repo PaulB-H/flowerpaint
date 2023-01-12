@@ -1,4 +1,4 @@
-console.log("Hello world");
+// console.log("Hello FlowerPaint");
 
 // Setup canvas / context
 const canvas = document.getElementById("canvas");
@@ -42,8 +42,6 @@ flowerArr.push(redflower);
 const yellowflower = document.createElement("img");
 yellowflower.src = "./images/yellow.png";
 flowerArr.push(yellowflower);
-
-console.log(flowerArr["blueflower"]);
 
 let activeColor = "rainbow";
 let flowerSize = 75;
