@@ -49,3 +49,28 @@ retro laser<br />https://freesound.org/people/MATRIXXX_/sounds/414888/
 sci-fi ui<br />https://freesound.org/people/Jofae/sounds/367997/</pre>
 
 </details>
+
+Multi-touch Gestures
+
+Thank you chatGPT for helping me understand multi touch gestures
+
+Each touch event includes event.touches, which is a\
+a list of all the active touch events and positions\
+Each touch itself has a touch.identifier property which\
+we use to keep track of them on our own object, "touches"
+
+Bonus thing I realized:\
+Because preventDefault(); is called, browser level multi touch gestures\
+are disabled, such as "pinch to zoom", which would be easy for a child to\
+activate by mistake
+
+The rest of the device-level gestures are disabled when you use "Guided Access"\
+such as switching apps on iPad, so once zoom is disabled like this, the child\
+is locked into a properly displayed page
+
+I was able to use this in a single line in abc123 as:\
+addEventListener("touchstart", (e) => e.preventDefault(), false);
+
+Calling false at the end explicitly states that this is NOT a passive event\
+handler, and we want to be able to call e.preventDefault(); which can interfere\
+with scroll operations / performance of the page

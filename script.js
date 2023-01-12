@@ -123,6 +123,45 @@ const placeFlower = (e) => {
   ctx.drawImage(newFlower, Xloc - (flowerSize / 2), Yloc - (flowerSize / 2), flowerSize, flowerSize);
 }
 
+const drawTouchFlower = (x, y) => {
+  let newFlower;
+  if (activeColor === "rainbow") {
+    newFlower = flowerArr[Math.floor(Math.random() * flowerArr.length)];
+  } else {
+    switch (activeColor) {
+      case "blue":
+        newFlower = blueflower;
+        break;
+      case "green":
+        newFlower = greenflower;
+        break;
+      case "orange":
+        newFlower = orangeflower;
+        break;
+      case "pink":
+        newFlower = pinkflower;
+        break;
+      case "purple":
+        newFlower = purpleflower;
+        break;
+      case "red":
+        newFlower = redflower;
+        break;
+      case "yellow":
+        newFlower = yellowflower;
+        break;
+    }
+  }
+
+  ctx.drawImage(
+    newFlower,
+    x - flowerSize / 2,
+    y - flowerSize / 2,
+    flowerSize,
+    flowerSize
+  );
+};
+
 const clearCanvas = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height)
 
@@ -203,20 +242,88 @@ canvas.addEventListener("mousemove", (e) => {
 
 // canvas.addEventListener("mouseleave", () => drawing = false);
 
-canvas.addEventListener("touchstart", (e) => {
-  e.preventDefault();
-  drawing = true;
-  lastLoc = [e.touches[0].clientX, e.touches[0].clientY]
-  placeFlower(e);
-})
+/*
+  Each touch event includes event.touches, which is a 
+  a list of all the active touch events and positions
+  Each touch itself has a touch.identifier property which
+  we use to keep track of them on our own object, "touches"
 
-canvas.addEventListener("touchend", () => drawing = false);
+  Flowers are still only drawn if the total distance between the 
+  touchmove points is greater than half the size of a flower
+*/
 
-canvas.addEventListener("touchmove", (e) => {
-  if (drawing) {
-    if (Math.abs(e.touches[0].clientX - lastLoc[0]) > (flowerSize / 2) || Math.abs(e.touches[0].clientY - lastLoc[1]) > (flowerSize / 2)) {
-      placeFlower(e);
-      lastLoc = [e.touches[0].clientX, e.touches[0].clientY]
-    };
-  }
-})
+const touches = {};
+
+canvas.addEventListener(
+  "touchstart",
+  (event) => {
+    event.preventDefault();
+    const touchesList = event.touches;
+
+    for (let i = 0; i < touchesList.length; i++) {
+      const touch = touchesList[i];
+      drawTouchFlower(touch.clientX, touch.clientY);
+
+      // Add the touch to the touches object
+      touches[touch.identifier] = {
+        x: touch.clientX,
+        y: touch.clientY,
+        lastFlower: {
+          x: touch.clientX,
+          y: touch.clientY,
+        },
+      };
+    }
+  },
+  false
+);
+
+canvas.addEventListener(
+  "touchmove",
+  (event) => {
+    event.preventDefault();
+    const touchesList = event.touches;
+
+    for (let i = 0; i < touchesList.length; i++) {
+      const touch = touchesList[i];
+
+      let totalDistance = 0;
+      totalDistance += Math.abs(
+        touches[touch.identifier].lastFlower.x - touch.clientX
+      );
+      totalDistance += Math.abs(
+        touches[touch.identifier].lastFlower.y - touch.clientY
+      );
+
+      if (totalDistance >= flowerSize / 2) {
+        drawTouchFlower(touch.clientX, touch.clientY);
+
+        // If we draw, update the lastFlower position for this touch
+        touches[touch.identifier].lastFlower.x = touch.clientX;
+        touches[touch.identifier].lastFlower.y = touch.clientY;
+      }
+
+      // Update the position of the touch in the touches object
+      Object.assign(touches[touch.identifier], {
+        x: touch.clientX,
+        y: touch.clientY,
+      });
+    }
+  },
+  false
+);
+
+canvas.addEventListener(
+  "touchend",
+  (event) => {
+    event.preventDefault();
+    const touchesList = event.changedTouches;
+
+    for (let i = 0; i < touchesList.length; i++) {
+      const touch = touchesList[i];
+      // Remove the touch from the touches object
+      delete touches[touch.identifier];
+    }
+  },
+  false
+);
