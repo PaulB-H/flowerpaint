@@ -63,22 +63,9 @@ const setFlowerSize = (sizeString) => {
   }
 };
 
-const placeFlower = (e) => {
-  let eventType;
-  switch (e.type) {
-    case "mousedown":
-    case "mousemove":
-    case "mouseup":
-      eventType = "mouse";
-      break;
-    case "touchstart":
-    case "touchmove":
-    case "touchend":
-      eventType = "touch";
-      break;
-  }
-
+const placeFlower = (eventOrTouch) => {
   let newFlower;
+
   if (activeColor === "rainbow") {
     newFlower = flowerArr[Math.floor(Math.random() * flowerArr.length)];
   } else {
@@ -107,59 +94,13 @@ const placeFlower = (e) => {
     }
   }
 
-  let Xloc;
-  let Yloc;
-  if (eventType === "mouse") {
-    Xloc = e.clientX;
-    Yloc = e.clientY;
-  } else if (eventType === "touch") {
-    Xloc = e.touches[0].clientX;
-    Yloc = e.touches[0].clientY;
-  }
+  const Xloc = eventOrTouch.clientX;
+  const Yloc = eventOrTouch.clientY;
 
   ctx.drawImage(
     newFlower,
     Xloc - flowerSize / 2,
     Yloc - flowerSize / 2,
-    flowerSize,
-    flowerSize
-  );
-};
-
-const drawTouchFlower = (x, y) => {
-  let newFlower;
-  if (activeColor === "rainbow") {
-    newFlower = flowerArr[Math.floor(Math.random() * flowerArr.length)];
-  } else {
-    switch (activeColor) {
-      case "blue":
-        newFlower = blueflower;
-        break;
-      case "green":
-        newFlower = greenflower;
-        break;
-      case "orange":
-        newFlower = orangeflower;
-        break;
-      case "pink":
-        newFlower = pinkflower;
-        break;
-      case "purple":
-        newFlower = purpleflower;
-        break;
-      case "red":
-        newFlower = redflower;
-        break;
-      case "yellow":
-        newFlower = yellowflower;
-        break;
-    }
-  }
-
-  ctx.drawImage(
-    newFlower,
-    x - flowerSize / 2,
-    y - flowerSize / 2,
     flowerSize,
     flowerSize
   );
@@ -277,7 +218,7 @@ canvas.addEventListener(
 
     for (let i = 0; i < touchesList.length; i++) {
       const touch = touchesList[i];
-      drawTouchFlower(touch.clientX, touch.clientY);
+      placeFlower(touch);
 
       // Add the touch to the touches object
       touches[touch.identifier] = {
@@ -311,7 +252,7 @@ canvas.addEventListener(
       );
 
       if (totalDistance >= flowerSize / 2) {
-        drawTouchFlower(touch.clientX, touch.clientY);
+        placeFlower(touch);
 
         // If we draw, update the lastFlower position for this touch
         touches[touch.identifier].lastFlower.x = touch.clientX;
