@@ -74,3 +74,5 @@ addEventListener("touchstart", (e) => e.preventDefault(), false);
 Calling false at the end explicitly states that this is NOT a passive event\
 handler, and we want to be able to call e.preventDefault(); which can interfere\
 with scroll operations / performance of the page
+
+I forgot about user-scalable="0" when I was doing this, but after some testing, that does not work, so this way of disabling pinch to zoom is still needed
