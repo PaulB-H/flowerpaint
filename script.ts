@@ -1,19 +1,20 @@
 // console.log("Hello FlowerPaint");
 
 // Setup canvas / context
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
+// const canvas = <HTMLCanvasElement> document.getElementById("canvas");
+const canvas = document.getElementById("canvas") as HTMLCanvasElement;
+const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const grass = document.createElement("img");
+const grass = document.createElement("img") as HTMLImageElement;
 grass.src = "./images/grass.png";
-grass.onload = () => {
+grass.onload = (): void => {
   ctx.drawImage(grass, 0, 0, canvas.width, canvas.height);
 };
 
 // Making flowers
-const flowerArr = [];
+const flowerArr: HTMLImageElement[] = [];
 
 const blueflower = document.createElement("img");
 blueflower.src = "./images/blue.png";
@@ -43,10 +44,20 @@ const yellowflower = document.createElement("img");
 yellowflower.src = "./images/yellow.png";
 flowerArr.push(yellowflower);
 
-let activeColor = "rainbow";
-let flowerSize = 75;
+let activeColor:
+  | "rainbow"
+  | "blue"
+  | "green"
+  | "orange"
+  | "pink"
+  | "purple"
+  | "red"
+  | "yellow" = "rainbow";
+let flowerSize: number = 75;
 
-const setFlowerSize = (sizeString) => {
+const setFlowerSize = (
+  sizeString: "small" | "medium" | "large" | "xlarge"
+): void => {
   switch (sizeString) {
     case "small":
       flowerSize = 50;
@@ -60,11 +71,13 @@ const setFlowerSize = (sizeString) => {
     case "xlarge":
       flowerSize = 150;
       break;
+    default:
+      break;
   }
 };
 
-const placeFlower = (eventOrTouch) => {
-  let newFlower;
+const placeFlower = (clientX: number, clientY: number): void => {
+  let newFlower: HTMLImageElement;
 
   if (activeColor === "rainbow") {
     newFlower = flowerArr[Math.floor(Math.random() * flowerArr.length)];
@@ -91,107 +104,132 @@ const placeFlower = (eventOrTouch) => {
       case "yellow":
         newFlower = yellowflower;
         break;
+      default:
+        newFlower = flowerArr[Math.floor(Math.random() * flowerArr.length)];
     }
   }
 
-  const Xloc = eventOrTouch.clientX;
-  const Yloc = eventOrTouch.clientY;
-
   ctx.drawImage(
     newFlower,
-    Xloc - flowerSize / 2,
-    Yloc - flowerSize / 2,
+    clientX - flowerSize / 2,
+    clientY - flowerSize / 2,
     flowerSize,
     flowerSize
   );
 };
 
-const clearCanvas = () => {
+const clearCanvas = (): void => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   ctx.drawImage(grass, 0, 0, canvas.width, canvas.height);
 };
 
-document.getElementById("download-link").addEventListener("click", () => {
-  const downloadLink = document.getElementById("download-link");
-  const downloadBtn = document.getElementById("download-btn");
+const downloadLink = document.getElementById(
+  "download-link"
+) as HTMLLinkElement;
 
-  downloadBtn.setAttribute("disabled", true);
-  setTimeout(() => {
+downloadLink.addEventListener("click", (): void => {
+  const downloadLink = document.getElementById(
+    "download-link"
+  ) as HTMLLinkElement;
+  const downloadBtn = document.getElementById(
+    "download-btn"
+  ) as HTMLButtonElement;
+
+  downloadBtn.setAttribute("disabled", "true");
+  setTimeout((): void => {
     downloadBtn.removeAttribute("disabled");
   }, 1500);
 
-  const dataURL = canvas.toDataURL();
+  const dataURL: string = canvas.toDataURL();
 
   downloadLink.href = dataURL;
 });
 
-const openClearOverlay = () =>
-  (document.getElementById("clear-overlay").style.display = "flex");
-const closeClearOverlay = () =>
-  (document.getElementById("clear-overlay").style.display = "none");
+const clearOverlay = document.getElementById("clear-overlay") as HTMLElement;
+const openClearOverlay = (): void => {
+  clearOverlay.style.display = "flex";
+};
+const closeClearOverlay = (): void => {
+  clearOverlay.style.display = "none";
+};
 
-const openColorOverlay = () =>
-  (document.getElementById("color-overlay").style.display = "flex");
-const closeColorOverlay = () =>
-  (document.getElementById("color-overlay").style.display = "none");
+const colorOverlay = document.getElementById("color-overlay") as HTMLElement;
+const openColorOverlay = (): void => {
+  colorOverlay.style.display = "flex";
+};
+const closeColorOverlay = (): void => {
+  colorOverlay.style.display = "none";
+};
 
-const openSizeOverlay = () =>
-  (document.getElementById("size-overlay").style.display = "flex");
-const closeSizeOverlay = () =>
-  (document.getElementById("size-overlay").style.display = "none");
+const sizeOverlay = document.getElementById("size-overlay") as HTMLElement;
+const openSizeOverlay = (): void => {
+  sizeOverlay.style.display = "flex";
+};
+const closeSizeOverlay = (): void => {
+  sizeOverlay.style.display = "none";
+};
 
-document.querySelectorAll(".color-btn").forEach((item) => {
-  item.addEventListener("click", () => {
-    const colorBtn = document.getElementById("color-btn");
-    colorBtn.style.backgroundColor = item.id;
+document.querySelectorAll(".color-btn").forEach((elem: Element): void => {
+  elem.addEventListener("click", (): void => {
+    const colorBtn = document.getElementById("color-btn") as HTMLButtonElement;
+    const colorBtnFirstElChild =
+      colorBtn.firstElementChild as HTMLParagraphElement;
 
-    if (item.id === "rainbow") {
+    colorBtn.style.backgroundColor = elem.id;
+
+    if (elem.id === "rainbow") {
       colorBtn.style.background =
         "radial-gradient(circle, rgba(255,0,0,1) 0%, rgba(252,173,0,1) 15%, rgba(251,255,0,1) 35%, rgba(0,255,26,1) 50%, rgba(0,32,255,1) 66%, rgba(105,17,255,1) 82%, rgba(231,87,255,1) 100%)";
     } else {
       colorBtn.style.background = "";
-      colorBtn.style.backgroundColor = item.id;
+      colorBtn.style.backgroundColor = elem.id;
     }
 
-    activeColor = item.id;
+    // We know elem.id *should* contain only a valid string,
+    // but it *could* contain any.. so we need <any> here..
+    activeColor = <any>elem.id;
 
-    switch (item.id) {
+    switch (elem.id) {
       case "blue":
       case "green":
       case "purple":
-        colorBtn.firstElementChild.style.color = "white";
+        colorBtnFirstElChild.style.color = "white";
         break;
       case "orange":
       case "pink":
       case "red":
       case "yellow":
       case "rainbow":
-        colorBtn.firstElementChild.style.color = "black";
+        colorBtnFirstElChild.style.color = "black";
+        break;
+      default:
         break;
     }
   });
 });
 
 let drawing = false;
-let lastLoc = [0, 0];
+let lastLoc: [number, number] = [0, 0];
 
-canvas.addEventListener("mousedown", (e) => {
+canvas.addEventListener("mousedown", (event: MouseEvent): void => {
   drawing = true;
-  lastLoc = [e.clientX, e.clientY];
-  placeFlower(e);
+  lastLoc = [event.clientX, event.clientY];
+  placeFlower(event.clientX, event.clientY);
 });
 
-canvas.addEventListener("mouseup", () => (drawing = false));
+canvas.addEventListener("mouseup", (): void => {
+  drawing = false;
+});
 
-canvas.addEventListener("mousemove", (e) => {
+canvas.addEventListener("mousemove", (event: MouseEvent) => {
   if (drawing) {
     if (
-      Math.abs(e.clientX - lastLoc[0]) > flowerSize / 2 ||
-      Math.abs(e.clientY - lastLoc[1]) > flowerSize / 2
+      Math.abs(event.clientX - lastLoc[0]) > flowerSize / 2 ||
+      Math.abs(event.clientY - lastLoc[1]) > flowerSize / 2
     ) {
-      placeFlower(e);
-      lastLoc = [e.clientX, e.clientY];
+      placeFlower(event.clientX, event.clientY);
+      lastLoc = [event.clientX, event.clientY];
     }
   }
 });
@@ -208,20 +246,33 @@ canvas.addEventListener("mousemove", (e) => {
   touchmove points is greater than half the size of a flower
 */
 
-const touches = {};
+interface Touches {
+  [key: number]: TouchLoc;
+}
+
+interface TouchLoc {
+  x: number;
+  y: number;
+  lastFlower: {
+    x: number;
+    y: number;
+  };
+}
+
+const touches: Touches = {};
 
 canvas.addEventListener(
   "touchstart",
-  (event) => {
+  (event: TouchEvent) => {
     event.preventDefault();
-    const touchesList = event.touches;
+    const touchList: TouchList = event.touches;
 
-    for (let i = 0; i < touchesList.length; i++) {
-      const touch = touchesList[i];
-      placeFlower(touch);
+    for (let i = 0; i < touchList.length; i++) {
+      const touch: Touch = touchList[i];
+      placeFlower(touch.clientX, touch.clientY);
 
       // Add the touch to the touches object
-      touches[touch.identifier] = {
+      touches[touch.identifier] = <TouchLoc>{
         x: touch.clientX,
         y: touch.clientY,
         lastFlower: {
@@ -236,12 +287,12 @@ canvas.addEventListener(
 
 canvas.addEventListener(
   "touchmove",
-  (event) => {
+  (event: TouchEvent) => {
     event.preventDefault();
-    const touchesList = event.touches;
+    const touchList: TouchList = event.touches;
 
-    for (let i = 0; i < touchesList.length; i++) {
-      const touch = touchesList[i];
+    for (let i = 0; i < touchList.length; i++) {
+      const touch: Touch = touchList[i];
 
       let totalDistance = 0;
       totalDistance += Math.abs(
@@ -252,7 +303,7 @@ canvas.addEventListener(
       );
 
       if (totalDistance >= flowerSize / 2) {
-        placeFlower(touch);
+        placeFlower(touch.clientX, touch.clientY);
 
         // If we draw, update the lastFlower position for this touch
         touches[touch.identifier].lastFlower.x = touch.clientX;
@@ -271,12 +322,13 @@ canvas.addEventListener(
 
 canvas.addEventListener(
   "touchend",
-  (event) => {
+  (event: TouchEvent) => {
     event.preventDefault();
-    const touchesList = event.changedTouches;
+    const touchList: TouchList = event.changedTouches;
 
-    for (let i = 0; i < touchesList.length; i++) {
-      const touch = touchesList[i];
+    for (let i = 0; i < touchList.length; i++) {
+      const touch: Touch = touchList[i];
+
       // Remove the touch from the touches object
       delete touches[touch.identifier];
     }
